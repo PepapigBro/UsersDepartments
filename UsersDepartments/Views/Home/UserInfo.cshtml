@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+
+    <div style="width:100%; height: 300px; text-align:center">
+        @*<span style="font-size:16px; color: darkgray; margin-right:16px; cursor:pointer" onclick="GetAllUsers()">GetAllUsers</span>        
+        <span style="font-size:16px; color: darkgray; margin-right:16px; cursor:pointer" onclick="CreateUser()">CreateUser</span>
+        <span style="font-size:16px; color: darkgray; margin-right:16px; cursor:pointer" onclick="EditUser()">EditUser</span>
+        <span style="font-size:16px; color: darkgray; margin-right:16px; cursor:pointer" onclick="RemoveUser()">RemoveUser</span>*@
+
+        <span>Имя пользователя</span>
+        <div ng-repeat="user in users">
+            <span>{{user.Name}}</span> 
+
+        </div>
+        
+
+
+        <br />
+        <br />
+        <input id="Scripture" style="border-width:1px; border-style:solid;  text-align:center;  border-color:lightgray; width:218px; height:30px; font-size:16px" placeholder='new user name' />
+        <span>добавить</span>
+        <br />
+        <br />
+        <span id="Label" style="font-size:16px; color: darkred; cursor:pointer"></span>
+    </div>
+</div>

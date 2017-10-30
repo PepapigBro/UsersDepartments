@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="text-align:left; margin-left:40px;">
+
+    <div style="width:100%; ">
+
+
+        <div ng-switch on="ViewMode">
+
+
+
+
+
+            <div ng-switch-when="Users" ng-init="GetAllUsers(); GetAllDepartments()" >
+               
+             
+
+                <input ng-model="username" id="Name" style="border-width:1px; border-style:solid;  text-align:center;  border-color:lightgray; width:218px; height:30px; font-size:16px" placeholder='Новый пользователь' />
+                <span ng-click="CreateUser(username)" style="cursor:pointer">добавить</span>
+               
+                 
+                <table style="margin-top:25px;">
+                    <tr>
+                        <td style="width:100px; color: gray; padding-bottom: 10px">Действия</td>
+                        <td style="width:300px; color: gray; padding-bottom: 10px">Имя пользователя</td>
+                        <td style="width:300px; color: gray; padding-bottom: 10px">Департамент</td>
+                    </tr>
+
+                   <tr ng-repeat="user in Users">
+                       <td>
+                           <span style="cursor:pointer; " ng-click="editMode=!editMode" class="glyphicon glyphicon-pencil"></span>&nbsp;
+                           <span style="cursor:pointer; " ng-click="editMode=false;  EditUser(user)" class="glyphicon glyphicon-floppy-disk"></span>
+                           <span style="cursor:pointer; " ng-click="RemoveUser(user.Id)" class="glyphicon glyphicon-trash"></span>&nbsp;
+                       </td>
+                       <td>
+                           
+                           <span ng-if="editMode==false">{{user.Name}}</span>
+                       
+                           <input ng-if="editMode==true" ng-model="user.Name" style="border-width:1px; border-style:solid;  text-align:center;  border-color:lightgray; width:218px; height:30px; font-size:16px" placeholder='Имя пользователя' />
+                       </td>
+                       <td>
+                           <div class="dropdown" >
+                               <button style="width:300px; text-align:left" class="btn  dropdown-toggle" type="button" data-toggle="dropdown">
+                                   {{user.Department.Title!=null?user.Department.Title:"Не выбран"}}
+                                   <span class="caret" style="float:right; margin-top:-10px"></span>
+                               </button>
+                               <ul class="dropdown-menu">
+                                   <li style="width:300px;"><a href="#" ng-click="user.DepartmentId=null; EditUser(user)"  style="text-align:left">Очистить</a></li>
+                                   <li style="width:300px;" ng-repeat="department in Departments"><a href="#" ng-click="user.DepartmentId=department.Id; EditUser(user)" style="text-align:left">{{department.Title}}</a></li>
+                                   
+                               </ul>
+                           </div>
+      </td>
+                   </tr>
+
+                </table>
+                
+                
+               
+
+            </div>
+
+
+
+            <div ng-switch-when="Departments" ng-init="GetAllDepartments()">
+                <input ng-model="departmentName" id="Scripture" style="border-width:1px; border-style:solid;  text-align:center;  border-color:lightgray; width:218px; height:30px; font-size:16px" placeholder='Новый департамент' />
+                <span ng-click="CreateDepartment(departmentName)" style="cursor:pointer">добавить</span>
+                <br />
+                
+                
+                
+                <table style="margin-top:25px;">
+                    <tr>
+                                           
+                        <td style="width:300px; color:gray; padding-bottom: 10px">Департамент</td>
+                        <td style="width:100px; color:gray; padding-bottom: 10px">Действия</td>
+                    </tr>
+
+                    <tr ng-repeat="department in Departments">
+                        <td style="height:30px; ">
+
+                            <span ng-if="editMode==false" >{{department.Title}}</span>
+
+                            <input ng-if="editMode==true" ng-model="department.Title" style="border-width:1px; border-style:solid;  text-align:center;  border-color:lightgray; width:218px; height:30px; font-size:16px" placeholder='Имя департамента' />
+                        </td>
+
+                        
+                         <td>
+                            <span style="cursor:pointer; " ng-click="editMode=!editMode" class="glyphicon glyphicon-pencil"></span>&nbsp;
+                            <span style="cursor:pointer; " ng-click="editMode=false;  EditDepartment(department)" class="glyphicon glyphicon-floppy-disk"></span>
+                            <span style="cursor:pointer; " ng-click="RemoveDepartment(department.Id)" class="glyphicon glyphicon-trash"></span>&nbsp;
+                        </td>
+                     
+                    </tr>
+
+                </table>             
+
+            </div>
+
+
+       
+
+
+
+
+        </div>
+
+
+
+    </div>
+</div>
